@@ -46,7 +46,7 @@ public class Tour {
 	@Max(value = 21, message = "{tour.duration}")
 	private int duration;
 
-	@Column(name = "all inclusive")
+	@Column(name = "all_inclusive")
 	private boolean allInclusive = false;
 
 	public String getName() {
