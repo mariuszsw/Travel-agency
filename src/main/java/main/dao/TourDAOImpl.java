@@ -16,29 +16,25 @@ public class TourDAOImpl implements TourDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Override
-	@Transactional
+	@Override	
 	public List<Tour> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createQuery("from Tour t", Tour.class).list();
 	}
 
-	@Override
-	@Transactional
+	@Override	
 	public Tour getById(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(Tour.class, id);
 	}
 
-	@Override
-	@Transactional
+	@Override	
 	public void saveOrUpdate(Tour tour) {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(tour);
 	}
 
-	@Override
-	@Transactional
+	@Override	
 	public void delete(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		Tour tour = getById(id);
