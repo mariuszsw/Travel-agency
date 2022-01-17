@@ -15,4 +15,7 @@ public interface TourService {
 	public void delete(int id);
 
 	public void addTourDetailsIfNotExists(Tour tour);
+	
+	public Tour getByIdWithComments(int id);
+
 }

@@ -45,4 +45,10 @@ public class TourServiceImpl implements TourService {
 		}
 
 	}
+
+	@Override
+	public Tour getByIdWithComments(int id) {
+		return tourDAO.getByIdWithComments(id);
+
+	}
 }

@@ -1,14 +1,17 @@
 package main.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Max;
@@ -55,7 +58,10 @@ public class Tour {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "tour_details_id")
 	private TourDetails tourDetails;
-
+	
+	@OneToMany(mappedBy = "tour", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Comment> comments;
+	
 	public String getName() {
 		return name;
 	}
@@ -118,6 +124,14 @@ public class Tour {
 
 	public void setTourDetails(TourDetails tourDetails) {
 		this.tourDetails = tourDetails;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 }

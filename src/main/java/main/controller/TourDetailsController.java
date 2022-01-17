@@ -24,7 +24,7 @@ public class TourDetailsController {
 
 	@GetMapping("/showtourDetails/{tourId}")
 	public String showTourDetails(@PathVariable int tourId, Model model) {
-		Tour tour = tourService.getById(tourId);
+		Tour tour = tourService.getByIdWithComments(tourId);
 		if (tour != null) {
 			tourService.addTourDetailsIfNotExists(tour);
 			model.addAttribute("tour", tour);
