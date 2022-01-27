@@ -31,6 +31,10 @@ public class Tour {
 	public enum Continent {
 		AFRICA, ASIA, EUROPE, NORTH_AMERYCA, SOUTH_AMERICA
 	}
+	
+	public Tour() {
+		setTourDetails(new TourDetails());
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

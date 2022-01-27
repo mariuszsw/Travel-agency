@@ -45,15 +45,6 @@ public class TourServiceImpl implements TourService {
 	}
 
 	@Override
-	public void addTourDetailsIfNotExists(Tour tour) {
-		if (tour.getTourDetails() == null) {
-			tour.setTourDetails(new TourDetails());
-			saveOrUpdate(tour);
-		}
-
-	}
-
-	@Override
 	public Tour getByIdWithComments(int id) {
 		return tourDAO.getByIdWithComments(id);
 
