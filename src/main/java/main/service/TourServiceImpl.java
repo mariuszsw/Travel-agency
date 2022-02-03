@@ -1,6 +1,8 @@
 package main.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,46 +10,44 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import main.dao.TourDAO;
-import main.dao.UserDAO;
 import main.model.Tour;
-import main.model.TourDetails;
 import main.model.User;
+import main.repository.TourRepository;
+import main.repository.UserRepository;
 
 @Service
 @Transactional
 public class TourServiceImpl implements TourService {
 
 	@Autowired
-	private TourDAO tourDAO;
+	private TourRepository tourRepository;
 	
 	@Autowired
-	private UserDAO userDAO;
+	private UserRepository userRepository;
 
 	@Override
 	public List<Tour> getAll() {
-		return tourDAO.getAll();
+		return tourRepository.findAll();
 	}
 
 	@Override
 	public Tour getById(int id) {
-		return tourDAO.getById(id);
+		return tourRepository.findById(id).get();
 	}
 
 	@Override
 	public void saveOrUpdate(Tour tour) {
-		tourDAO.saveOrUpdate(tour);
+		tourRepository.save(tour);
 	}
 
 	@Override
 	public void delete(int id) {
-		tourDAO.delete(id);
+		tourRepository.deleteById(id);
 	}
 
 	@Override
 	public Tour getByIdWithComments(int id) {
-		return tourDAO.getByIdWithComments(id);
-
+		return tourRepository.getByIdWithComments(id);
 	}
 
 	@Override
@@ -58,10 +58,18 @@ public class TourServiceImpl implements TourService {
 			tour.setUsers(new ArrayList<>());
 		}
 		
-		User user = userDAO.getById(userId);
+		User user = userRepository.getById(userId);
 		if(user != null) {
 			tour.getUsers().add(user);
 			saveOrUpdate(tour);			
 		}
+	}
+
+	@Override
+	public List<Tour> getAllForNextMonth() {
+		Date currentDate = new Date();
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.MONTH, 1);
+		return tourRepository.findByDateBetween(currentDate, calendar.getTime());
 	}
 }
