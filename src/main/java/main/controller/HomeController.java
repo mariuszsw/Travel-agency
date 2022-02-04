@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {	
 
 	@RequestMapping("/")
-	public String getHome() {
+	public String getHome() { 
+//		System.out.println("Password admin " + PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("admin"));
+//		System.out.println("Password admin " + PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("employee"));
+//		System.out.println("Password admin " + PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("client"));
+//		
 		return "home";
 	}	
 }
