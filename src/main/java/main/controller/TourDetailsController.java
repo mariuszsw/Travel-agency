@@ -22,7 +22,7 @@ public class TourDetailsController {
 	@Autowired
 	private TourDetailsService tourDetailsService;
 
-	@GetMapping("/showtourDetails/{tourId}")
+	@GetMapping("/showTourDetails/{tourId}")
 	public String showTourDetails(@PathVariable int tourId, Model model) {
 		Tour tour = tourService.getByIdWithComments(tourId);
 		if (tour != null) {

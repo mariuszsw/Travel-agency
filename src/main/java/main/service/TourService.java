@@ -16,7 +16,7 @@ public interface TourService {
 
 	public Tour getByIdWithComments(int id);
 	
-	public void addUserToTour(int id, int userId);
+	public void addUserToTour(int id, String login);
 	
 	public List<Tour> getAllForNextMonth();
 

@@ -1,5 +1,6 @@
 package main.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -63,9 +64,9 @@ public class TourController {
 		return "redirect:/showOffer";
 	}
 	
-	@GetMapping("/addUserToTour/{id}/{userId}")
-	public String addUserToTour(@PathVariable int id, @PathVariable int userId) {
-		tourService.addUserToTour(id, userId);
+	@GetMapping("/addUserToTour/{id}")
+	public String addUserToTour(@PathVariable int id, Principal principal) {
+		tourService.addUserToTour(id, principal.getName());
 		return "redirect:/showOffer";
 		
 	}
